@@ -1,4 +1,5 @@
 import axios from "axios";
+import fightersRepository from "../repositories/fightersRepository.js";
 import errorResponse from "./../responses/errorResponses.js";
 
 export async function addBattleService(firstUser: string, secondUser: string){
@@ -45,6 +46,8 @@ export async function addBattleService(firstUser: string, secondUser: string){
             draw: true
         };
     }
+
+    await fightersRepository.updateFighters(firstUser, secondUser, result);
 
     return result;
 }

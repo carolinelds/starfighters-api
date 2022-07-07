@@ -12,6 +12,4 @@ app.use(cors());
 app.use(router);
 app.use(errorHandlingMiddleware);
 
-app.listen(4000, () => {
-  console.log("App online on port 4000");
-});
+export default app;
