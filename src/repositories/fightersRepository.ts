@@ -1,3 +1,5 @@
+/* IMPORTANT: in order for it to work as intended, you need to add a UNIQUE constraint on 'username' column at the table fighters */
+
 import connectDB from "../database.js";
 
 interface Result {
