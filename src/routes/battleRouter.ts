@@ -5,6 +5,6 @@ import { addBattle } from "./../controllers/battleController.js";
 
 const battleRouter = Router();
 
-battleRouter.post("/battle", validSchema(usersSchema, "users"), addBattle);
+battleRouter.post("/battle", validSchema(usersSchema, "users' data"), addBattle);
 
 export default battleRouter;

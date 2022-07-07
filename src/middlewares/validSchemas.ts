@@ -8,15 +8,15 @@ export default function validSchema(schema: any, entity: string) {
         const schemaBody: object = {};
 
         for (const key in body) {
-            if (typeof req.body[key] === "string") {
-                schemaBody[key] = stripHtml(req.body[key]).result.trim();
+            if (typeof schema[key] === "string") {
+                schemaBody[key] = stripHtml(body[key]).result.trim();
             } else {
-                schemaBody[key] = req.body[key];
+                schemaBody[key] = body[key];
             }
         }
 
         //const validation = await schema.validateAsync(schemaBody, { abortEarly: false });
-        const validation = await schema.validateAsync(schemaBody);
+        const validation = schema.validate(schemaBody, { abortEarly: false });
 
         if (validation.error) {
             //console.log(validation.error.details.map((detail) => detail.message));

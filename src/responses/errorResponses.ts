@@ -1,7 +1,7 @@
 export function schemaNotValid(entity: string){
     throw {
         type: "error_not_valid",
-        message: `The ${entity} inserted is not a valid one`
+        message: `The ${entity} inserted is not valid`
     }
 }
 
