@@ -42,7 +42,6 @@ async function updateFighters(firstUser: string, secondUser: string, result: Res
         return;
     }
 
-    console.log("chegou aqui1");
     await connection.query(`
         INSERT INTO fighters (username, wins, losses, draws)
         VALUES ($1, 1, 0, 0)
@@ -50,8 +49,6 @@ async function updateFighters(firstUser: string, secondUser: string, result: Res
         DO UPDATE SET wins = fighters.wins + 1
         WHERE fighters.username = $1 
         `, [updateWinner]);
-
-    console.log("chegou aqui2");
 
     await connection.query(`
         INSERT INTO fighters (username, wins, losses, draws)
@@ -63,8 +60,18 @@ async function updateFighters(firstUser: string, secondUser: string, result: Res
 
 }
 
+async function selectRanking(){
+    const connection = await connectDB();
+
+    return await connection.query(`
+        SELECT username, wins, losses, draws FROM fighters
+        ORDER BY wins DESC, draws DESC
+    `);
+}
+
 const fightersRepository = {
-    updateFighters
+    updateFighters,
+    selectRanking
 };
 
 export default fightersRepository;
